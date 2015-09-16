@@ -83,7 +83,8 @@ type Service struct {
 	client    *http.Client
 	BasePath  string // API endpoint base URL
 	UserAgent string // optional additional User-Agent fragment
-
+	TraceToken string // optional trace token provided by Google
+	
 	Datasets *DatasetsService
 
 	Jobs *JobsService
@@ -2918,6 +2919,9 @@ func (c *TabledataInsertAllCall) doRequest(alt string) (*http.Response, error) {
 	}
 	urls := googleapi.ResolveRelative(c.s.BasePath, "projects/{projectId}/datasets/{datasetId}/tables/{tableId}/insertAll")
 	urls += "?" + params.Encode()
+	if c.s.TraceToken != "" {
+		urls += "&trace=token:" + c.s.TraceToken
+	}
 	req, _ := http.NewRequest("POST", urls, body)
 	googleapi.Expand(req.URL, map[string]string{
 		"projectId": c.projectId,

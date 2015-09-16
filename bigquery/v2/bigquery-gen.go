@@ -84,7 +84,7 @@ type Service struct {
 	BasePath  string // API endpoint base URL
 	UserAgent string // optional additional User-Agent fragment
 	TraceToken string // optional trace token provided by Google
-	
+
 	Datasets *DatasetsService
 
 	Jobs *JobsService
